@@ -500,7 +500,7 @@
 
     if (listElement.classList.contains('correct')) {
       console.log('correct!');
-      imgCorrect.style.transform = 'scale(1, 1)';
+      imgCorrect.style.transform = 'scale(.6, .6)';
       correctCounter++;
       setTimeout(() => {
         pCounter.textContent = correctCounter;
@@ -510,7 +510,7 @@
     }
     if (!listElement.classList.contains('correct')) {
       console.log('wrong...');
-      imgWrong.style.transform = 'scale(1, 1)';
+      imgWrong.style.transform = 'scale(.6, .6)';
       aHistories[progress - 1].correct = false;
     }
   }

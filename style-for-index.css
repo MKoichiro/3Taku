@@ -134,7 +134,7 @@ main {
   /* padding-top: var(--font-size-nav); */
   margin-top: 2em;
   font-size: 48px;
-  width: calc(6em + .2em * (6 - 1));
+  width: fit-content;
   margin: auto auto 3em;
   text-align: center;
 }
@@ -208,7 +208,7 @@ fieldset.option label {
   width: 3em;
   margin: 0 auto;
   border-left: 3px solid transparent;
-  font-size: var(--font-size-huge);
+  font-size: var(--font-size-large);
   /* flex: 1; */
   text-align: center;
   transition: border-left 1s;
@@ -234,3 +234,70 @@ fieldset input {
   }
 }
 
+
+@media(max-width: 599px) {
+
+  :root {
+    --font-size-header: 20px;
+    --font-size-nav: 40px;
+    --font-size-huge: 24px;
+    --font-size-large: 16px;
+    --font-size-normal: 14px;
+    --font-size-small: 12px;
+    --large-gap: 12px;
+    --small-gap: 4px;
+  }
+  .btn-wrapper a .rocket {
+    font-size: 22px;
+    line-height: 22px;
+    height: 22px;
+    display: block;
+    align-self: flex-end;
+    padding-left: calc(48px * .2);
+  }
+  .btn-wrapper a p {
+    font-size: 28px;
+    line-height: 28px;
+    height: 28px;
+  
+    padding-left: .2em;
+    letter-spacing: .2em;
+  }
+  
+  
+  fieldset.option {
+    width: 70%;
+    margin: 0 auto;
+    border: none;
+  }
+  fieldset.option legend {
+    font-size: 22px;
+    letter-spacing: .1em;
+  }
+
+
+  a hr.grad-border {
+    width: 100%;
+    height: 2px;
+    margin-top: .2em;
+    background: linear-gradient(
+      to right,
+      var(--color-a) 33%,
+      var(--color-b) 33% 66%,
+      var(--color-c) 66% 100%
+    );
+  }
+  a hr.veal {
+    width: 105%;
+    height: 4px;
+    background: #111;
+    transform: translateY(-2px);
+  }
+
+  fieldset.option label {
+    border-left: 1.5px solid transparent;
+  }
+  fieldset.option label:hover {
+    border-left: 1.5px solid var(--color-a);
+  }
+}
