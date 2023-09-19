@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="style.css">
+  <title>三択クイズ</title>
+</head>
+
+<body>
+
+  <header>
+    <h1>
+      <span class="red-dot">.</span><span class="blue-dot">.</span><span class="green-dot">.</span>
+      3Taku
+      <span class="red-dot">.</span><span class="blue-dot">.</span><span class="green-dot">.</span>
+    </h1>
+  </header>
+
+  <main>
+    <section class="wrapper ruby-on">
+
+      <div class="q-wrapper">
+
+        <div class="heading">
+          <h2>
+            第 <span class="num" style="color: var(--color-yellow)"><!-- 1 --></span> 問
+          </h2>
+          <div class="counter">
+            <p>正答数： </p>
+            <p> <span class="num">0</span></p>
+          </div>
+        </div>
+
+        <div class="q-sentence-container">
+          <h3 class="q-sentence">
+            <!-- 『富嶽三十六景』で知られる葛飾北斎が晩年に名乗ったとされる雅号は次のうちどれ？ -->
+          </h3>
+        </div>
+
+        <div class="choices">
+          <ul>
+            <li class="first">
+              <span>A</span>
+              <p><!-- 選択肢1 --></p>
+            </li>
+            <li class="second">
+              <span>B</span>
+              <p><!-- 選択肢2 --></p>
+            </li>
+            <li class="third">
+              <span>C</span>
+              <p><!-- 選択肢3 --></p>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="separater">
+        <span class="red-dot">・</span><span class="blue-dot">・</span><span class="green-dot">・</span>
+      </div>
+
+      <div class="answer-wrapper">
+        <div class="mask"></div>
+        <p>正解は</p>
+        <h3 class="correct-answer">
+          <!-- A -->
+        </h3>
+        <div class="comment">
+          <!-- <p>北斎は、本人の70代半ばにあたる天保5年（1834年）から「画狂老人卍（がきょうろうじんまんじ）」の号を用いる。『富嶽百景』を手がける。</p> -->
+        </div>
+
+      </div>
+      <img class="img-correct" src="img/correct.PNG" alt="正解" width="100" height="100">
+      <img class="img-wrong" src="img/wrong.PNG" alt="不正解" width="100" height="100">
+
+    </section>
+  </main>
+
+    <div id="btn-wrapper">
+      <a id="btn-home" href="index.html">◀◀ Top</a>
+      <a id="btn-prev">◀ 前へ</a>
+      <span style="font-weight: bold; color: var(--color-yellow);">|</span>
+      <a id="btn-next">次へ ▶</a>
+    </div>
+
+
+
+    <button id="btn-setting-icon">
+      <span class="material-symbols-outlined open">
+        more_horiz
+      </span>
+      <!-- <span class="material-symbols-outlined close clicked">
+        arrow_forward_ios
+      </span> -->
+    </button>
+    <section class="setting-wrapper">
+      <ul class="menus">
+        <li class="menu kana-menu">
+          <fieldset>
+              <legend id="kana-radio">ふりがな</legend>
+              <div class="kana-radio-container label-container">
+                <label><input type="radio" name="kana" class="radio kana-radio" id="kana-radio-on" value="on">ON</label>
+                <label><input type="radio" name="kana" class="radio kana-radio" id="kana-radio-off" value="off" checked>OFF</label>
+              </div>
+          </fieldset>
+        </li>
+        <li class="menu"></li>
+        <li class="menu"></li>
+      </ul>
+    </section>
+
+
+  <script src="main.js"></script>
+</body>
+
+</html>

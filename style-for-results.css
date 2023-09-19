@@ -1,0 +1,887 @@
+@charset "utf-8";
+
+:root {
+  --color-grey: #777;
+  --color-moss-green: #a1ca19;
+  --color-off-white: rgb(255, 245, 228);
+  --color-dark-blue: rgb(0, 0, 95);
+  --color-yellow: rgb(188, 188, 71);
+  --color-a: rgb(144, 87, 144);
+  --color-b: rgb(50, 50, 91);
+  --color-c: rgb(179, 130, 77);
+  --large-gap: 32px;
+  --small-gap: 8px;
+  /* --weight-circle-cross: 8px; */
+
+  --font-size-header: 32px;
+  --font-size-nav: 64px;
+  --font-size-ABC: 40px;
+  --font-size-huge: 32px;
+  --font-size-large: 24px;
+  --font-size-normal: 20px;
+  --font-size-small: 18px;
+  /* --font-size-tiny: 16px; */
+}
+
+
+/* common */
+* {
+  box-sizing: border-box;
+  /* color: var(--color-dark-blue); */
+  color: #111;
+
+}
+html {
+  background: #333;
+  background-image: url(img/tex6.png);
+  background-attachment: fixed;
+  height: 0;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Courier New', Courier, monospace;
+  white-space: nowrap;
+  /* padding-bottom: 200vh; */
+}
+
+p,
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+h2 {
+  font-size: 1em;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+button {
+  all: unset;
+}
+img {
+  vertical-align: bottom;
+}
+hr {
+  margin: 0;
+}
+span.start,
+span.end {
+  display: inline-block; /* scaleを効かせるため */
+  font-size: 10px;       /* 10pxが最小値 */
+  transform: scale(0);   /* scaleでブロック毎無理やり縮小*/
+  opacity: 0;
+  user-select: none;
+}
+span.end.flow {
+  /* 文字を流すときに連続する次の要素との感覚を制御 */
+  transform: scale(1);
+  padding-right: 80px; /*------------------------------------------------------- 後でメディアクエリ */
+}
+rt {
+  display: none;
+}
+
+/* header */
+header {
+  background: #555;
+  padding: var(--font-size-nav) 0;
+  font-family: 'Economica';
+  font-size: var(--font-size-header);
+  width: 100%;
+
+  margin: 0 auto;
+  user-select: none;
+}
+header div {
+  width: fit-content;
+  margin: 0 auto;
+  background: linear-gradient(
+    to right,
+    var(--color-a) 33%,
+    var(--color-b) 33% 66%,
+    var(--color-c) 66% 100%
+    );
+}
+h1 {
+  background-image: url(img/tex1.png);
+  background-size: cover;
+
+  font-size: var(--font-size-header);
+  color: #222;  
+  letter-spacing: var(--font-size-normal);
+  line-height: 1.5em;
+  padding-left: var(--font-size-normal);
+  font-weight: bold;
+}
+/* hilight */
+/* span.red-dot {
+  color: var(--color-a);
+}
+span.blue-dot {
+  color: var(--color-b);
+}
+span.green-dot {
+  color: var(--color-c);
+} */
+
+/* main */
+main {
+  width: 100%;
+  margin: 0 auto;
+  transition: width .5s ease-in-out, transform .5s ease-in-out;
+}
+
+nav {
+  background: #555;
+}
+nav ul {
+  font-size: var(--font-size-nav);
+  font-family: 'Economica';
+  height: calc(100vh  + 4em) ;
+  /* 100vh - title高さ + Result高さ + Resultのpadding-top */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+nav li {
+  width: calc(100% / 3);
+  font-size: inherit;
+  height: 2em;
+  line-height: 1em;
+  padding-bottom: 1em;
+  margin-top: 3em;
+}
+.link-top {
+  text-align: right;
+}
+.link-result {
+  text-align: center;
+}
+nav a,
+nav button,
+nav h2,
+nav p,
+nav span {
+  display: inline-block;
+  font-size: inherit;
+  color: #666;
+  height: 1em;
+  line-height: 1em;
+}
+
+li.link-result button {
+  transition: color .6s ease-out;
+  cursor: pointer;
+  opacity: 1;
+  transition: transform .5s, opacity .5s;
+}
+
+li.link-result button.hidden {
+  opacity: 0;
+  transform: translateY(1em);
+}
+
+li.dammy-result {
+  text-align: center;
+  align-self: flex-end;
+  opacity: 0;
+  transition: transform .5s, opacity .5s;
+}
+li.dammy-result h2,
+li.dammy-result span {
+  color: #111;
+  user-select: none;
+}
+li.dammy-result.show {
+  opacity: 1;
+}
+li.dammy-result.fade-out {
+  transform: translateY(-1em);
+}
+
+li .first-letter {
+  color: #111;
+  transition: color 1.2s ease-out;
+}
+
+
+
+
+/* section.result-container */
+.result-container {
+  font-family: 'Economica';
+  font-size: 80px;
+  width: 100%;
+  /* padding-bottom: 16px; */
+  margin: 32px auto 48px;
+
+  display: flex;
+  align-items:flex-end;
+  justify-content: center;
+}
+.result-container h2 {
+  color: var(--color-yellow);
+  margin-right: 16px;
+  font-size: 1.5em;
+  line-height: 1em;
+  height: 1em;
+}
+.result-container p {
+  color: #111;
+}
+
+/* section#histories-container */
+#histories-container {
+  background: #555;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--large-gap);
+  padding: var(--large-gap);
+}
+
+/* article.history-container */
+.history-container {
+  font-size: var(--font-size-normal);
+  font-weight: bold;
+  background: #999;
+  border-radius: 3px;
+  width: calc((100% - var(--large-gap) * 3) / 4);
+
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+
+  transition: box-shadow .5s, height 1s 1s;
+}
+.history-container.open {
+  transition: height 1s .1s;
+}
+.history-container:hover {
+  box-shadow: 0 0 32px 0px #333;
+}
+/* div.upper-container */
+div.upper-container {
+  width: 100%;
+  padding: var(--small-gap);
+
+  display: flex;
+  flex-direction: column;
+}
+p.q-number {
+  /* font-family: 'Times New Roman'; */
+  font-family: 'Economica';
+  font-size: var(--font-size-large);
+  width: 100%;
+  height: 1.5em;
+  padding: calc(var(--small-gap) / 2);
+  text-align: center;
+
+  background: #111;
+  color: #aaa;
+  font-weight: bold;
+
+  /* アニメ */
+  transition: border-radius 1s;
+  /* 縮小時 */
+  border-radius: 2px;
+}
+article.open p.q-number {
+  border-radius: 2px 2px 0 0;
+}
+div.q-sentence-container {
+  display: flex;
+  overflow: hidden;
+  background: #bbb;
+  /* 縮小時アニメ */
+  transition: height .5s .5s;
+  /* 縮小時 */
+  height: 0;
+}
+article.open div.q-sentence-container {
+  /* 展開時アニメ */
+  transition: height 1s;
+  /* 展開時 */
+  height: 1.5em;
+}
+
+p.q-sentence {
+  border-radius: 0 0 2px 2px;
+  background: #bbb;
+
+  /* 縮小時アニメ */
+  transition: line-height .5s .5s;
+  /* 縮小時 */
+  line-height: 0;
+}
+article.open p.q-sentence {
+  /* 展開時アニメ */
+  transition: line-height 1s;
+  /* 展開時 */
+  line-height: 1.5em;
+
+  /* オーバーフローを(...)で省略: 3行セット */
+  white-space: nowrap;      /* テキストを折り返しを無効化 */
+  overflow: hidden;         /* overflowをhidden */
+  text-overflow: ellipsis;  /* "..."を付与 */
+}
+article.open p.q-sentence.flow {
+  /* circulateText()実行時 */
+  overflow: visible;        /* 初期値に戻す */
+  text-overflow: clip;      /* 初期値に戻す */
+}
+
+
+/* div.lower-container */
+div.lower-container {
+  padding: 0 var(--small-gap);
+  flex:1;
+  display: flex;
+  padding-bottom: var(--small-gap);
+}
+p.correct-answer {
+  font-family: 'Times New Roman';
+  border-radius: 2px;
+  text-align: center;
+  overflow: hidden;
+
+  color: #bbb;
+
+  /* 縦書き設定 */
+  writing-mode: vertical-lr;
+  transform: scale(-1, -1);
+
+  /* 縮小時アニメ */
+  transition: width .5s .5s, height 1s, margin-right .5s .5s;
+  /* 非表示設定 */
+  height: 0;
+  width: 0;
+  padding: 0;
+  margin-right: 0;
+}
+p.correct-answer.a {
+  background: var(--color-a);
+}
+p.correct-answer.b {
+  background: var(--color-b);
+}
+p.correct-answer.c {
+  background: var(--color-c);
+}
+article.open p.correct-answer {
+  /* 展開時アニメ */
+  transition: width 1s, height 1s, margin-right 1s;
+  /* 展開時 */
+  width: 1.5em;
+  line-height: 1.5em;
+  margin-right: var(--small-gap);
+  height: calc(
+  ((80vw - (var(--large-gap) * 5)) / 4) / 3 * 4 
+  - (var(--font-size-normal) + var(--font-size-large)) * 1.5 - (var(--small-gap) * 3)
+  );
+  /*
+  横 : 縦 = 4: 3  ▶  3 : 4 になるように展開
+  (windowの75% - (flexgap&margin * 5つ))/4列 /(aspect比)
+  - (qNum&sentenceの高さ(各1.5em)) - (高さ方向に付けたいmargin8pxが3箇所)
+  */
+}
+/* div.status-and-choices */
+div.status-and-choices {
+  flex: 1;
+  width: calc(100% - (var(--small-gap) * 3) - 1.5em);
+  display: flex;
+  flex-direction: column;
+}
+div.status {
+  border-radius: 2px;
+  flex: 1;
+  display: flex;
+  background: #bbb;
+}
+.circle,
+.cross {
+  margin: 0 auto;
+  flex-direction: column;
+  justify-content: center;
+  display: none;
+}
+.circle.show,
+.cross.show {
+  display: flex;
+}
+.circle {
+  width: 45%;
+}
+.circle hr {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border: var(--small-gap) solid darkred;
+  border-radius: 50%;
+}
+.cross {
+  width: 100%;
+}
+.cross hr {
+  /* circleに合わせた45%幅からルート2倍 */
+  width: calc(45% * 1.414);
+  margin: 0 auto;
+  border: calc(var(--small-gap) / 2) solid #111;
+  border-radius: calc(var(--small-gap) / 2);
+  background: #111;
+}
+.cross hr:first-child {
+  transform: rotate(45deg) translateY(calc(var(--small-gap) / 2));
+}
+.cross hr:last-child {
+  transform: rotate(-45deg) translateY(calc(-1 * var(--small-gap) / 2));
+}
+/* ul.choices */
+ul.choices {
+  width: 100%;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: var(--small-gap);
+
+  /* 縮小時アニメ */
+  transition: height .5s, margin-top .5s .5s;
+  /* 非表示設定 */
+  height: 0;
+  margin-top: 0;
+}
+article.open ul.choices {
+  /* 展開時アニメ */
+  transition: height 1s 1s, margin-top 1s 1s;
+  /* 展開時 */
+  margin-top: 8px;
+  height: calc((var(--font-size-small) * 1.5 + (var(--small-gap) / 2) * 2)
+   * 3 + var(--small-gap) * 2 + 4px);
+  /*
+  (line-height1.5em + 上下padding) * 3択 + flexgap2個 + choicedにつけるborder幅
+  */
+}
+ul.choices li {
+  padding: calc(var(--small-gap) / 2) var(--small-gap);
+  border-radius: 2px;
+  display: flex;
+  width: 100%;
+}
+ul.choices li:nth-child(1) {
+  background: #bbb;
+}
+ul.choices li:nth-child(1).choiced {
+  border: 2px solid var(--color-a);
+}
+ul.choices li:nth-child(2) {
+  background: #bbb;
+}
+ul.choices li:nth-child(2).choiced {
+  border: 2px solid var(--color-b);
+}
+ul.choices li:nth-child(3) {
+  background: #bbb;
+}
+ul.choices li:nth-child(3).choiced {
+  border: 2px solid var(--color-c);
+}
+ul.choices li span.abc {
+  font-family: 'Times New Roman';
+  font-size: var(--font-size-normal);
+  width: 1em;
+  padding-right: var(--small-gap);
+  display: block;
+}
+ul.choices li:nth-child(1) span.abc {
+  color: var(--color-a);
+}
+ul.choices li:nth-child(2) span.abc {
+  color: var(--color-b);
+}
+ul.choices li:nth-child(3) span.abc {
+  color: var(--color-c);
+}
+
+div.choice-txt-container {
+  width: 7.5em;   /*-----------------------------------------------------------後でメディアクエリ*/
+  display: flex;
+  overflow: hidden;
+}
+ul.choices li p {
+  font-size: var(--font-size-small);
+  height: 1.5em;
+  line-height: 1.5em;
+  font-weight: normal;
+  text-align: center;
+}
+article.open li p {
+  /* オーバーフローを(...)で省略 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+article.open li p.flow {
+  /* circulateText()実行時 */
+  overflow: visible;        /* 初期値に戻す */
+  text-overflow: clip;      /* 初期値に戻す */
+}
+
+
+
+@media(max-width: 1024px) {
+
+  :root {
+    --font-size-header: 28px;
+    --font-size-nav: 48px;
+    --font-size-large: 20px;
+    --font-size-normal: 18px;
+    --font-size-small: 16px;
+    --large-gap: 24px;
+    --small-gap: 8px;
+  }
+
+  body {
+    width: 90%;
+  }
+
+  .result-container {
+    font-size: 60px;
+  }
+
+  #histories-container {
+    background: #555;
+    display: flex;
+    flex-wrap: wrap;
+    /* gap: 24px;
+    padding: 24px; */
+  }
+  /* #histories-container {
+    margin-top: 28px;
+    gap: 16px;
+    padding: 0 28px;
+  } */
+
+  article.history-container {
+    width: calc((100% - var(--large-gap) * 2) / 3);
+  }
+  article.open p.correct-answer {
+    /* 展開時アニメ */
+    /* transition: width 1s, height 1s, margin-right 1s; */
+    /* 展開時 */
+    /* width: 1.5em;
+    line-height: 1.5em; */
+    /* margin-right: 8px; */
+    height: calc(
+    ((90vw - (var(--large-gap) * 4)) / 3) / 3 * 4 
+    - (var(--font-size-normal) + var(--font-size-large)) * 1.5 - (var(--small-gap) * 3)
+    );
+    /*
+    横 : 縦 = 4: 3  ▶  3 : 4 になるように展開
+    (windowの75% - (flexgap&margin * 5つ))/4列 /(aspect比)
+    - (qNum&sentenceの高さ(各1.5em)) - (高さ方向に付けたいmargin8pxが3箇所)
+    */
+  }
+
+  .circle {
+    transform: scale(.85);
+  }
+  .circle hr {
+    border: 6px solid darkred;
+  }
+  .cross {
+    transform: scale(.85);
+  }
+  .cross hr {
+    border: 3px solid #111;
+    border-radius: 3px;
+  }
+  .cross hr:first-child {
+    transform: translateY(3px) rotate(45deg);
+  }
+  .cross hr:last-child {
+    transform: translateY(-3px) rotate(-45deg);
+  }
+
+  article.open ul.choices {
+    height: calc((var(--font-size-small) * 1.5 + (var(--small-gap) / 2) * 2) * 3 + var(--small-gap) * 2 + 4px);
+    /*
+    (line-height1.5em + 上下padding) * 3択 + flexgap2個 + choicedにつけるborder幅
+    */
+  }
+
+  ul.choices li span.abc {
+    font-size: var(--font-size-normal);
+  }
+
+  div.choice-txt-container {
+    /*-----------------------------------------------------------後でメディアクエリ*/
+    /* width: 100%; */
+  }
+
+}
+
+
+@media(max-width: 750px) {
+  :root {
+    --large-gap: 24px;
+    --small-gap: 6px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: none;
+  }
+  nav li {
+    margin: 0;
+    width: 100%;
+  }
+  nav li.link-top {
+    order: 1;
+    text-align: center;
+  }
+  nav li.link-result {
+    order: 3;
+  }
+  nav li.something {
+    order: 2;
+    text-align: center;
+  }
+  nav li.dammy-result {
+    order: 4;
+    align-self: auto;
+    margin-top: auto;
+  }
+  #histories-container {
+    flex-direction: column;
+  }
+
+  article.history-container {
+    width: 100%;
+    aspect-ratio: auto;
+  }
+  .history-container:hover {
+    box-shadow: 0 0 16px 0px #333;
+  }
+
+  div.upper-container {
+    gap: var(--small-gap);
+    padding: var(--small-gap);
+    flex-direction: row;
+  }
+  /* 今後の課題 */
+  /* article:nth-child(2n) div.upper-container {
+    flex-direction: row-reverse;
+  } */
+  p.q-number {
+    font-size: var(--font-size-large);
+    width: 1.5em;
+  }
+  article.open p.q-number {
+    border-radius: 2px;
+  }
+  div.q-sentence-container {
+    /* width: 100%; */
+    flex: 1;
+
+    font-size: var(--font-size-large);
+    height: 1.5em;
+    border-radius: 2px;
+  }
+  p.q-sentence {
+    line-height: 1.5em;
+    /* オーバーフローを(...)で省略: 3行セット */
+    white-space: nowrap;      /* テキストを折り返しを無効化 */
+    overflow: hidden;         /* overflowをhidden */
+    text-overflow: ellipsis;  /* "..."を付与 */
+  }
+
+  div.lower-container {
+    height: 0;
+    /* gap: 6px; */
+    padding: 0 var(--small-gap);
+    /* 縮小時アニメ */
+    transition: height 1s;
+    /* 非表示設定 */
+    /* padding-bottom: 0;
+    height: 0; */
+  }
+  article.open div.lower-container {
+    /* 展開時アニメ */
+    transition: height 1s;
+    /* 展開時 */
+    height: calc((var(--font-size-small) * 1.5 + (var(--small-gap) / 2) * 2) * 3 + var(--small-gap) * 2 + 4px);
+    padding-bottom: var(--small-gap);
+  }
+  p.correct-answer {
+    font-size: var(--font-size-large);
+    /* margin-right: 6px; */
+    width: 1.5em;
+    line-height: 1.5em;
+    /* 縮小時アニメ */
+    transition: height 1s;
+    /* 非表示設定 */
+    height: 0;
+  }
+  article.open p.correct-answer {
+    /* 展開時アニメ */
+    transition: height 1s;
+    /* 展開時 */
+    height: calc((var(--font-size-small) * 1.5 + (var(--small-gap) / 2) * 2) * 3 + var(--small-gap) * 2 + 4px);
+
+  }
+  /* div.status-and-choices */
+  div.status-and-choices {
+    flex-direction: row;
+    transition: height 1s;
+    height: 0;
+  }
+  article.open div.status-and-choices {
+    /* 展開時アニメ */
+    transition: height 1s;
+    /* 展開時 */
+    height: calc((var(--font-size-small) * 1.5 + (var(--small-gap) / 2) * 2) * 3 + var(--small-gap) * 2 + 4px);
+  }
+
+  .circle,
+  .cross {
+    transform: scale(0, 0);
+    transition: transform 1s;
+  }
+  article.open .circle,
+  article.open .cross {
+    transform: scale(1, 1);
+    transition: transform 1s .5s;
+  }
+  /* ul.choices */
+  ul.choices {
+    flex: 3;
+    overflow-y: hidden;
+    margin-left: 6px;
+  
+    /* 縮小時アニメ */
+    transition: height 1s;
+    /* 非表示設定 */
+    height: 0;
+  }
+  article.open ul.choices {
+    /* 展開時アニメ */
+    transition: height 1s;
+    /* 展開時 */
+    height: calc((var(--font-size-small) * 1.5 + (var(--small-gap) / 2) * 2) * 3 + var(--small-gap) * 2 + 4px);
+    margin-top: 0;
+  }
+  
+  div.choice-txt-container {
+    width: calc((90vw - (var(--large-gap) * 2 + var(--small-gap) * 4 + var(--font-size-large) * 1.5)) / 4 * 3 - var(--font-size-normal) - var(--small-gap) * 3);
+  }
+  ul.choices li {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+  ul.choices li:nth-child(1) {
+    transition: transform .25s .5s, opacity .25s .5s;
+  }
+  ul.choices li:nth-child(2) {
+    transition: transform .25s .25s, opacity .25s .25s;
+  }
+  ul.choices li:nth-child(3) {
+    transition: transform .25s, opacity .25s;
+  }
+  .open ul.choices li:nth-child(1) {
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform .25s, opacity .25s;
+  }
+  .open ul.choices li:nth-child(2) {
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform .25s .25s, opacity .25s .25s;
+  }
+  .open ul.choices li:nth-child(3) {
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform .25s .5s, opacity .25s .5s;
+  }
+
+
+}
+
+@media(max-width: 599px) {
+
+  :root {
+    --font-size-header: 20px;
+    --font-size-nav: 40px;
+    --font-size-large: 18px;
+    --font-size-normal: 16px;
+    --font-size-small: 14px;
+    --large-gap: 16px;
+    --small-gap: 6px;
+  }
+
+}
+
+@media(max-width: 399px) {
+
+  :root {
+    --font-size-header: 20px;
+    --font-size-nav: 40px;
+    --font-size-large: 16px;
+    --font-size-normal: 14px;
+    --font-size-small: 12px;
+    --large-gap: 12px;
+    --small-gap: 4px;
+  }
+
+  .circle {
+    width: 70%;
+  }
+  .circle hr {
+    border: 3px solid darkred;
+  }
+  .cross hr {
+    width: calc(70% * 1.414);
+    border: calc(3px / 2) solid #111;
+    border-radius: calc(3px / 2);
+  }
+  .cross hr:first-child {
+    transform: rotate(45deg) translateY(calc(3px / 2));
+  }
+  .cross hr:last-child {
+    transform: rotate(-45deg) translateY(calc(-1 * 3px / 2));
+  }
+
+}
+
+
+.ufo {
+  width: 100%;
+  height: 200vh;
+  margin-top: auto;
+  position: relative;
+}
+.ufo img {
+  width: 20px;
+  position: absolute;
+  bottom: 20px;
+  right: 5%;
+  transition: transform 30s ease-in-out;
+}
+.ufo.clicked img {
+  transform: scale(15, 15) translate(-30%, -50%);
+}

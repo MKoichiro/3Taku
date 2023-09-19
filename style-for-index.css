@@ -1,0 +1,118 @@
+@charset "utf-8";
+
+:root {
+  --color-grey: #777;
+  --color-moss-green: #a1ca19;
+  --color-off-white: rgb(255, 245, 228);
+  --color-dark-blue: rgb(0, 0, 95);
+  --color-yellow: rgb(188, 188, 71);
+  --color-a: rgb(144, 87, 144);
+  --color-b: rgb(50, 50, 91);
+  --color-c: rgb(179, 130, 77);
+  --large-gap: 32px;
+  --small-gap: 8px;
+
+  --font-size-header: 32px;
+  --font-size-nav: 64px;
+  --font-size-ABC: 40px;
+  --font-size-huge: 32px;
+  --font-size-large: 24px;
+  --font-size-normal: 20px;
+  --font-size-small: 18px;
+  /* --font-size-tiny: 16px; */
+}
+
+
+/* common */
+* {
+  box-sizing: border-box;
+  /* color: var(--color-dark-blue); */
+  color: #111;
+
+}
+html {
+  background: #333;
+  background-image: url(img/tex6.png);
+  background-attachment: fixed;
+  height: 0;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Economica';
+  white-space: nowrap;
+}
+
+p,
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+h2 {
+  font-size: 1em;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+button {
+  all: unset;
+}
+img {
+  vertical-align: bottom;
+}
+
+/* header */
+header {
+  /* background: #555; */
+  padding: var(--font-size-nav) 0;
+  font-family: 'Economica';
+  font-size: var(--font-size-header);
+  width: 100%;
+
+  margin: 0 auto;
+  user-select: none;
+}
+header div {
+  width: fit-content;
+  margin: 0 auto;
+  background: linear-gradient(
+    to right,
+    var(--color-a) 33%,
+    var(--color-b) 33% 66%,
+    var(--color-c) 66% 100%
+    );
+}
+h1 {
+  background-image: url(img/tex1.png);
+  background-size: cover;
+
+  font-size: var(--font-size-header);
+  color: #222;  
+  letter-spacing: var(--font-size-normal);
+  line-height: 1.5em;
+  padding-left: var(--font-size-normal);
+  font-weight: bold;
+}
+
+
+/* main */
+main {
+  width: 100%;
+  margin: 0 auto;
+  transition: width .5s ease-in-out, transform .5s ease-in-out;
+}
+
