@@ -295,6 +295,7 @@ div.choices>ul>li>span {
 .first {
   background: var(--color-a);
   background-image: url(img/tex3.png);
+  background-size: cover;
   border-radius: 4px;
   transition: box-shadow 0.8s;
 }
@@ -306,6 +307,7 @@ div.choices>ul>li>span {
 .second {
   background: rgb(67, 67, 112);
   background-image: url(img/tex4.png);
+  background-size: cover;
   border-radius: 4px;
   transition: box-shadow 0.8s;
 }
@@ -316,6 +318,7 @@ div.choices>ul>li>span {
 .third {
   background: var(--color-c);
   background-image: url(img/tex5.png);
+  background-size: cover;
   border-radius: 4px;
   transition: box-shadow 0.8s;
 }
@@ -413,19 +416,21 @@ div.answer-wrapper>h3 {
 h3.a-is-correct {
   background: var(--color-a);
   background-image: url(img/tex3.png);
+  background-size: cover;
   color: #111;
 }
 
 h3.b-is-correct {
   background: rgb(67, 67, 112);
   background-image: url(img/tex4.png);
-
+  background-size: cover;
   color: #111;
 }
 
 h3.c-is-correct {
   background: var(--color-c);
   background-image: url(img/tex5.png);
+  background-size: cover;
   color: #111;
 }
 
