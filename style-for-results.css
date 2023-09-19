@@ -35,7 +35,7 @@ html {
   background: #333;
   background-image: url(img/tex6.png);
   background-attachment: fixed;
-  height: 0;
+  /* height: 0; */
   white-space: nowrap;
   scroll-behavior: smooth;
   height: 100%;

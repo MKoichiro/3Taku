@@ -192,7 +192,7 @@
   let progress = 0;                     // 進捗度カウンタ
   let qHistories = [];                  // 出題履歴の配列: 出題した問題を、questions配列のindex番号として控えておく
   let aHistories = [];                  // 回答履歴の配列
-  let nOfQ = 5;                         // number if questions: 出題数
+  let nOfQ = Number(localStorage.getItem('nOfQ'));  // number if questions: 出題数
   let currentPageNum = 0;
   let answered;
   let nOfChoices = 3;                   //選択肢の数
@@ -687,10 +687,10 @@
       pInli.style.textAlign = 'center';
     });
     ulChoices.style.flexDirection = 'row';
-    ulChoices.style.gap = '32px';
-    if (hasLineBreak(3)) {
+    ulChoices.style.gap = '2em';
+    if (hasLineBreak(3) || window.innerWidth < 600) {
       ulChoices.style.flexDirection = 'column';
-      ulChoices.style.gap = '16px';
+      ulChoices.style.gap = '1em';
       liChoices.forEach(choice => {
         const pInli = choice.querySelector('p');
         pInli.style.textAlign = 'left';

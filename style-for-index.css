@@ -74,6 +74,15 @@ button {
 img {
   vertical-align: bottom;
 }
+hr {
+  margin: 0;
+  border: none;
+  padding: 0;
+}
+fieldset {
+  margin: 0;
+  padding: 0;
+}
 
 /* header */
 header {
@@ -111,8 +120,117 @@ h1 {
 
 /* main */
 main {
+  height: calc(100vh - var(--font-size-header) - var(--font-size-nav) * 2);
   width: 100%;
   margin: 0 auto;
   transition: width .5s ease-in-out, transform .5s ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.btn-wrapper {
+  /* align-self: flex-end; */
+  /* padding-top: var(--font-size-nav); */
+  margin-top: 2em;
+  font-size: 48px;
+  width: calc(6em + .2em * (6 - 1));
+  margin: auto auto 3em;
+  text-align: center;
+}
+.btn-wrapper a {
+  display: flex;
+  /* height: 48px; */
+  position: relative;
+  flex-wrap: wrap;
+  overflow: hidden;
+  /* padding-bottom: 10px; */
+}
+
+a hr.grad-border {
+  width: 100%;
+  height: 3.5px;
+  margin-top: .2em;
+  background: linear-gradient(
+    to right,
+    var(--color-a) 33%,
+    var(--color-b) 33% 66%,
+    var(--color-c) 66% 100%
+  );
+  
+}
+a hr.veal {
+  width: 105%;
+  height: 5px;
+  background: #111;
+  transform: translateY(-4px);
+}
+a hr.veal.reveal {
+  animation: borderAnime 1s ease-out;
+}
+
+.btn-wrapper a .rocket {
+  font-size: 36px;
+  line-height: 36px;
+  height: 36px;
+  display: block;
+  align-self: flex-end;
+  padding-left: calc(48px * .2);
+}
+.btn-wrapper a p {
+  font-size: 48px;
+  line-height: 48px;
+  height: 48px;
+
+  padding-left: .2em;
+  letter-spacing: .2em;
+}
+
+fieldset.option {
+  width: 70%;
+  margin: 0 auto;
+  border: none;
+}
+
+fieldset.option legend {
+  font-size: 40px;
+  letter-spacing: .1em;
+}
+fieldset.option legend span {
+  color: var(--color-a);
+}
+.label-container {
+  display: flex;
+  gap: var(--font-size-huge);
+  margin: 1em 1em;
+}
+fieldset.option label {
+  width: 3em;
+  margin: 0 auto;
+  border-left: 3px solid transparent;
+  font-size: var(--font-size-huge);
+  /* flex: 1; */
+  text-align: center;
+  transition: border-left 1s;
+}
+fieldset.option label:hover {
+  border-left: 3px solid var(--color-a);
+  cursor: pointer;
+}
+fieldset input {
+  display: none;
+}
+
+
+
+
+
+@keyframes borderAnime {
+  0% {
+    transform: translate(0%, -4px);
+  }
+  100% {
+    transform: translate(100%, -4px)
+  }
 }
 
