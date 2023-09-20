@@ -1,6 +1,18 @@
 'use strict';
 
 {
+  
+  const tes = document.querySelector('.ufo2');
+
+const h1Elm = document.querySelector('header h1');
+
+h1Elm.addEventListener('click', () => {
+tes.classList.add('show');
+setTimeout(() => {
+tes.classList.remove('show');
+},800);
+});
+
 
 
   let abc = ['A', 'B', 'C', 'D', 'E'];
