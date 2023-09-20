@@ -551,7 +551,7 @@
       function rewriteBtnNext(e) {
         e.preventDefault(); // jsからhrefを変更するとその瞬間に画面遷移するので、それを回避
         btnNext.href = 'result.html';
-        btnNext.innerHTML = '成績画面へ /&gt;';
+        btnNext.innerHTML = '成績画面へ &gt;';
       }
 
       // 最終ページ以外
