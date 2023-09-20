@@ -551,7 +551,7 @@
       function rewriteBtnNext(e) {
         e.preventDefault(); // jsからhrefを変更するとその瞬間に画面遷移するので、それを回避
         btnNext.href = 'result.html';
-        btnNext.textContent = '成績画面へ /&gt;';
+        btnNext.innerHTML = '成績画面へ /&gt;';
       }
 
       // 最終ページ以外
@@ -604,7 +604,7 @@
 
       restyleChoices();
       btnNext.href = '#';
-      btnNext.textContent = '次へ ▶';
+      btnNext.innerHTML = '次へ &gt;';
     });
 
     btnSetting.addEventListener('click', (e) => {
